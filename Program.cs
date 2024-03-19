@@ -1,3 +1,3 @@
-﻿using TradeReg.View;
+﻿using CryptoReg.View;
 
 MainMenu.Show();

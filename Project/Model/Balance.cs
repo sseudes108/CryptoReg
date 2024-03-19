@@ -1,6 +1,7 @@
 namespace CryptoReg.Model;
 
 internal class Balance{
+    public DateTime RegistryDate { get; set; }
     public float Binance { get; set; }
     public float Kucoin { get; set; }
     public float Ledger { get; set; }
@@ -9,6 +10,7 @@ internal class Balance{
 }
 
 // create table Balance(
+//     RegistryDate DATE,
 //     Binance FLOAT,
 //     Kucoin FLOAT,
 //     Ledger FLOAT,
