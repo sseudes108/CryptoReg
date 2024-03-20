@@ -1,5 +1,4 @@
 using CryptoReg.Enums;
-using CryptoReg.Model;
 using CryptoReg.View;
 
 namespace CryptoReg.Libs;
@@ -37,32 +36,75 @@ internal static class MenuLib{
         Console.WriteLine();
     }
 
-    public static void DrawLine(){
-        var hif = 0;
-        do{
-            Console.Write("-");
-            hif++;
-        }while(hif < 56);
-        Console.WriteLine("");
-    }
-
     public static void MenuItem(string nomeDoItem){
         Console.WriteLine(nomeDoItem);
     }
 
+    public static int GetIntegerEntry(string text){
+        GeneralLib.WaitForSeconds(1.5f);
+        GeneralLib.Write(text);
+
+        return GetInteger();
+    }
     public static int GetIntegerEntry(){
         GeneralLib.WaitForSeconds(1.5f);
         GeneralLib.Write("Select an Option, Dave");
 
+        return GetInteger();
+    }
+    private static int GetInteger(){
         bool valid;
         int option;
-        do
-        {
+        do{
             var input = Console.ReadLine();
             valid = int.TryParse(input, out option);
         } while (!valid);
 
         return option;
+    }
+
+    public static float GetFloatEntry(string text){
+        GeneralLib.WaitForSeconds(1.5f);
+        GeneralLib.Write(text);
+
+        bool valid;
+        float option;
+        do{
+            var input = Console.ReadLine();
+            valid = float.TryParse(input, out option);
+        } while (!valid);
+
+        return option;
+    }
+
+    public static string GetTextEntry(){
+        GeneralLib.Write("What was the Coin this time?");
+        var input = Console.ReadLine();
+        return input.ToUpper();
+    }
+
+    public static bool GetYesOrNoEntry(string text){
+        GeneralLib.Write(text);
+        var input = Console.ReadLine();
+        var formatedInput = input.ToUpper();
+
+        bool returnValue = false;
+        bool valid;
+        do{
+            valid = true;
+
+            if (formatedInput.Contains('Y')){
+                returnValue = true;
+            }
+            else if (formatedInput.Contains('N')){
+                returnValue = false;
+            }
+            else{
+                valid = false;
+            }
+        } while (!valid);
+
+        return returnValue;
     }
 
     public static void ExitProgram(){
@@ -76,7 +118,7 @@ internal static class MenuLib{
         Console.ReadKey();
     }
 
-    public static void BackToLastMenu(EMenus menu){
+    public static void BackToMenu(EMenus menu){
         PressAnyKey();
         
         string? menuName;

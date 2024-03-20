@@ -5,7 +5,7 @@ using CryptoReg.Libs;
 internal static class MainMenu{
     public static void Show(){
         GeneralLib.ClearScreen();
-        MenuLib.Header("Main Menu");
+        MenuLib.Header("Main");
 
         GeneralLib.Write(" ");
         MenuLib.MenuItem("1 - Balance");
@@ -13,7 +13,7 @@ internal static class MainMenu{
 
         GeneralLib.Write(" ");
         MenuLib.MenuItem("0 - Exit");
-        MenuLib.DrawLine();
+        GeneralLib.DrawLine();
         
         var option = MenuLib.GetIntegerEntry();
 
@@ -22,7 +22,7 @@ internal static class MainMenu{
                 BalanceMenu.Show();
             break;
             case 2:
-                GeneralLib.Write("Trades");
+                TradeMenu.Show();
             break;
             case 0:
                 MenuLib.ExitProgram();

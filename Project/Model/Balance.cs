@@ -9,11 +9,13 @@ internal class Balance{
     public float TotalBRL { get; set; }
 }
 
-// create table Balance(
-//     RegistryDate DATE,
-//     Binance FLOAT,
-//     Kucoin FLOAT,
-//     Ledger FLOAT,
-//     TotalUSD FLOAT,
-//     TotalBRL FLOAT
-// )
+/*
+create table Balance(
+    RegistryDate DATE,
+    Binance FLOAT,
+    Kucoin FLOAT,
+    Ledger FLOAT,
+    TotalUSD FLOAT,
+    TotalBRL FLOAT
+)
+*/
