@@ -1,9 +1,11 @@
-using CryptoReg.View;
-
-namespace CryptoReg.Enums;
+namespace CryptoReg.Controller;
 
 public enum EMenus{
     Main,
     Balance,
     Trade
+}
+public enum ETradeType{
+    Short,
+    Long
 }

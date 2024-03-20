@@ -2,7 +2,6 @@ namespace CryptoReg.View;
 
 using CryptoReg.Libs;
 using CryptoReg.Controller;
-using CryptoReg.Model;
 
 internal static class BalanceMenu{
     public static void Show(){       

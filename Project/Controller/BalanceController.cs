@@ -1,7 +1,7 @@
+namespace CryptoReg.Controller;
+
 using CryptoReg.Libs;
 using CryptoReg.Model;
-
-namespace CryptoReg.Controller;
 
 internal static class BalanceController{
     public static void PrintLastRegistry(Balance lastRegistry){
@@ -9,10 +9,10 @@ internal static class BalanceController{
 
         var formatedDate = lastRegistry.RegistryDate.ToString("dd/MM/yyyy");
         GeneralLib.Write($@"Date:       {formatedDate}");
-        GeneralLib.Write($@"Binance:    {GeneralLib.UsCurrencyValue(lastRegistry.Binance)}");
-        GeneralLib.Write($@"Kucoin:     {GeneralLib.UsCurrencyValue(lastRegistry.Kucoin)}");
-        GeneralLib.Write($@"Ledger:     {GeneralLib.UsCurrencyValue(lastRegistry.Ledger)}");
-        GeneralLib.Write($@"TotalUSD:   {GeneralLib.UsCurrencyValue(lastRegistry.TotalUSD)}");
+        GeneralLib.Write($@"Binance:    {GeneralLib.USCurrencyValue(lastRegistry.Binance)}");
+        GeneralLib.Write($@"Kucoin:     {GeneralLib.USCurrencyValue(lastRegistry.Kucoin)}");
+        GeneralLib.Write($@"Ledger:     {GeneralLib.USCurrencyValue(lastRegistry.Ledger)}");
+        GeneralLib.Write($@"TotalUSD:   {GeneralLib.USCurrencyValue(lastRegistry.TotalUSD)}");
         GeneralLib.Write($@"TotalBRL:   {GeneralLib.BRCurrencyValue(lastRegistry.TotalBRL)}");
     }
 
@@ -23,7 +23,7 @@ internal static class BalanceController{
         PrintLastRegistry(lastRegistry);
         GeneralLib.DrawLine();
 
-        MenuLib.BackToMenu(Enums.EMenus.Balance);
+        MenuLib.BackToMenu(EMenus.Balance);
     }
 
     public static void NewBalanceRegistry(){
@@ -35,16 +35,16 @@ internal static class BalanceController{
         Balance newBalance = new(){
             RegistryDate = DateTime.Today,
             // RegistryDate = new DateTime(1999,02,33),
-            Binance = MenuLib.GetFloatEntry("Binance balance value"),
-            Kucoin = MenuLib.GetFloatEntry("Kucoin balance value"),
-            Ledger = MenuLib.GetFloatEntry("Ledger balance value"),
-            TotalUSD = MenuLib.GetFloatEntry("TotalUSD balance value"),
-            TotalBRL = MenuLib.GetFloatEntry("TotalBRL balance value")
+            Binance = MenuLib.GetFloatEntry("Binance account value"),
+            Kucoin = MenuLib.GetFloatEntry("Kucoin account value"),
+            Ledger = MenuLib.GetFloatEntry("Ledger account value"),
+            TotalUSD = MenuLib.GetFloatEntry("TotalUSD value"),
+            TotalBRL = MenuLib.GetFloatEntry("TotalBRL value")
         };
 
         GeneralLib.Loading("Making the Registry");
         SqlInserter.InsertBalanceMonthyRegistry(newBalance);
 
-        MenuLib.BackToMenu(Enums.EMenus.Main);
+        MenuLib.BackToMenu(EMenus.Main);
     }
 }

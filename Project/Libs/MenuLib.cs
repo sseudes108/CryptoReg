@@ -1,7 +1,7 @@
-using CryptoReg.Enums;
-using CryptoReg.View;
-
 namespace CryptoReg.Libs;
+
+using CryptoReg.Controller;
+using CryptoReg.View;
 
 internal static class MenuLib{
     public static void Header(string headerText){
@@ -15,7 +15,7 @@ internal static class MenuLib{
 
         //Começo da linha
         do{
-            Console.Write("-");
+            Console.Write("*");
             hif++;
         }while(hif < maxEachSide);
 
@@ -30,7 +30,7 @@ internal static class MenuLib{
         }
         //completa a linha até o caracter designado
         do{
-            Console.Write("-");
+            Console.Write("*");
             hif++;
         }while(hif < maxEachSide * 2);
         Console.WriteLine();
@@ -77,8 +77,8 @@ internal static class MenuLib{
         return option;
     }
 
-    public static string GetTextEntry(){
-        GeneralLib.Write("What was the Coin this time?");
+    public static string GetTextEntry(string text){
+        GeneralLib.Write(text);
         var input = Console.ReadLine();
         return input.ToUpper();
     }

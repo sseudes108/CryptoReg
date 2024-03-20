@@ -7,7 +7,6 @@ internal static class MainMenu{
         GeneralLib.ClearScreen();
         MenuLib.Header("Main");
 
-        GeneralLib.Write(" ");
         MenuLib.MenuItem("1 - Balance");
         MenuLib.MenuItem("2 - Trades");
 

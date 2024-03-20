@@ -1,19 +1,20 @@
-using System.Collections;
+namespace CryptoReg.Controller;
+
+using CryptoReg.Libs;
 using CryptoReg.Model;
 using Dapper;
 using Microsoft.Data.SqlClient;
 
-namespace CryptoReg.Controller;
-
 internal static class SqlReader{
-
-
 #region Balance
 
     public static IEnumerable<Balance> GetAllBalanceRegistries(){
         IEnumerable<Balance> registries;
         using(var connection = new SqlConnection(SqlManager.CONNECTION)){
-            registries = connection.Query<Balance>(@"SELECT [RegistryDate], [Binance], [Kucoin], [Ledger], [TotalUSD], [TotalBRL] FROM Balance");
+            registries = connection.Query<Balance>(@"SELECT 
+                [RegistryDate], [Binance], [Kucoin], [Ledger], [TotalUSD], [TotalBRL] 
+            FROM 
+                Balance");
         }
         return registries;
     }
@@ -44,4 +45,53 @@ internal static class SqlReader{
     }
 #endregion
 
+#region Trade
+    public static IEnumerable<Trade> GetAllTradeLogs(){
+        IEnumerable<Trade> registries;
+        using(var connection = new SqlConnection(SqlManager.CONNECTION)){
+            registries = connection.Query<Trade>(@"SELECT 
+                [ID], [DateOpened], [DateClosed], [Coin], [Lavarage], [Invested],
+                [Final], [Result], [ROI] 
+            FROM 
+                Trade");
+        }
+        return registries;
+    }
+
+    public static void SearchTradeLogID(int id){
+        var tradeLogs = GetAllTradeLogs();
+        var selectedLog = new Trade();
+        foreach(var tradeLog in tradeLogs){
+            if(id == tradeLog.ID){
+                selectedLog = tradeLog;
+            }
+        }
+       
+        TradeController.PrintTradeLog(selectedLog);
+    }
+
+    public static void SearchTradeLogROI(int key){
+        var tradeLogs = GetAllTradeLogs();
+        var selectedLogs = new List<Trade>();
+
+        //Positive ROI
+        if(key == 1){
+            foreach(var tradeLog in tradeLogs){
+                if(tradeLog.ROI > 0.0f){
+                    selectedLogs.Add(tradeLog);
+                }
+            }
+        }else{
+            foreach(var tradeLog in tradeLogs){
+                if(tradeLog.ROI < 0.0f){
+                    selectedLogs.Add(tradeLog);
+                }
+            }
+        }
+
+        foreach(var tradeLog in selectedLogs){
+            TradeController.PrintTradeLog(tradeLog);
+        }
+    }
+#endregion
 }
