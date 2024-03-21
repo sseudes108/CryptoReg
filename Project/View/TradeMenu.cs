@@ -25,7 +25,7 @@ internal static class TradeMenu{
                 TradeController.CreateTradeLog();
             break;
             case 2:
-                TradeMenuSearch.Show();
+                TradeSearchMenu.Show();
             break;
             case 3:
                 TradeController.CalculateTrade();

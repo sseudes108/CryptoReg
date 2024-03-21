@@ -12,6 +12,8 @@ internal static class SqlInserter{
         using(var connection = new SqlConnection(SqlManager.CONNECTION)){
             var affectedLines = connection.Execute(InsertTradeLog(),
             new{
+                newTradeLog.TradeType,
+                newTradeLog.IsOpen,
                 newTradeLog.DateOpened,
                 newTradeLog.DateClosed,
                 newTradeLog.Coin,
@@ -27,8 +29,10 @@ internal static class SqlInserter{
 
     private static string InsertTradeLog(){
         var tradeRegistry = @"INSERT INTO
-            [Trade] (DateOpened, DateClosed, Coin, Lavarage, Invested, Final, Result, ROI)
+            [Trade] (TradeType, IsOpen, DateOpened, DateClosed, Coin, Lavarage, Invested, Final, Result, ROI)
         VALUES(
+            @TradeType,
+            @IsOpen,
             @DateOpened,
             @DateClosed,
             @Coin,

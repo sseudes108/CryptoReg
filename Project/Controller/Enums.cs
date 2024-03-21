@@ -3,7 +3,8 @@ namespace CryptoReg.Controller;
 public enum EMenus{
     Main,
     Balance,
-    Trade
+    Trade,
+    TradeSearch,
 }
 public enum ETradeType{
     Short,

@@ -2,6 +2,8 @@ namespace CryptoReg.Model;
 
 internal class Trade{
     public int ID { get; set; }
+    public string? TradeType { get; set; }
+    public int IsOpen { get; set; }
     public DateTime DateOpened { get; set; }
     public DateTime DateClosed { get; set; }
     public string? Coin { get; set; }
@@ -15,6 +17,8 @@ internal class Trade{
 /*
 create table Trade(
     ID INT IDENTITY(1,1) PRIMARY KEY,
+    TradeType VARCHAR(8),
+    IsOpen INT,
     DateOpened DATE,
     DateClosed DATE,
     Coin NVARCHAR (12),

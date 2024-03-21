@@ -126,6 +126,8 @@ internal static class MenuLib{
             menuName = "Balance Menu";
         }else if(menu == EMenus.Trade){
             menuName = "Trade Menu";
+        }else if(menu == EMenus.TradeSearch){
+            menuName = "Trade Search Menu";
         }else{
             menuName = "Main Menu";
         }
@@ -137,6 +139,8 @@ internal static class MenuLib{
             BalanceMenu.Show();
         }else if(menu == EMenus.Trade){
             TradeMenu.Show();
+        }else if(menu == EMenus.TradeSearch){
+            TradeSearchMenu.Show();
         }else{
             MainMenu.Show();
         }

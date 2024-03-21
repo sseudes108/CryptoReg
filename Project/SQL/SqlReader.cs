@@ -1,6 +1,5 @@
 namespace CryptoReg.Controller;
 
-using CryptoReg.Libs;
 using CryptoReg.Model;
 using Dapper;
 using Microsoft.Data.SqlClient;
@@ -50,7 +49,7 @@ internal static class SqlReader{
         IEnumerable<Trade> registries;
         using(var connection = new SqlConnection(SqlManager.CONNECTION)){
             registries = connection.Query<Trade>(@"SELECT 
-                [ID], [DateOpened], [DateClosed], [Coin], [Lavarage], [Invested],
+                [ID], [TradeType], [IsOpen], [DateOpened], [DateClosed], [Coin], [Lavarage], [Invested],
                 [Final], [Result], [ROI] 
             FROM 
                 Trade");
@@ -58,7 +57,7 @@ internal static class SqlReader{
         return registries;
     }
 
-    public static void SearchTradeLogID(int id){
+    public static Trade SearchTradeLogID(int id){
         var tradeLogs = GetAllTradeLogs();
         var selectedLog = new Trade();
         foreach(var tradeLog in tradeLogs){
@@ -66,8 +65,7 @@ internal static class SqlReader{
                 selectedLog = tradeLog;
             }
         }
-       
-        TradeController.PrintTradeLog(selectedLog);
+        return selectedLog;
     }
 
     public static void SearchTradeLogROI(int key){
